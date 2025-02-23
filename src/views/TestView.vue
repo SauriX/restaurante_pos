@@ -39,7 +39,7 @@ import { onMounted, ref } from 'vue';
 const printers = ref<string[]>([]);
 
 
-import { useModal } from 'bootstrap-vue-next'
+import { useModal,BButton,BModal } from 'bootstrap-vue-next'
 // Ref para controlar la visibilidad del modal
 const modalVisible = ref(false);
 
