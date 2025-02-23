@@ -1,11 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
-</template>
+  <main-layout v-if="Logged">
+    <router-view />
+  </main-layout>
 
+    <router-view v-if="!Logged"/>
+</template>
+<script setup lang="ts">
+  import MainLayout from '@/components/MainLayout.vue'
+  import { storeToRefs } from 'pinia';
+  import { UserStore } from './stores/UserStore';
+  
+  const { Logged } = storeToRefs(UserStore());
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
