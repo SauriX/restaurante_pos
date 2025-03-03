@@ -5,7 +5,7 @@ import router from './router'
 import {createBootstrap} from 'bootstrap-vue-next'
 
 import { createPinia } from 'pinia'
-import "@/assets/scss/custom.scss"; // Importa los estilos personalizados
+import "@/assets/styles/scss/custom.scss"; // Importa los estilos personalizados
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
 import 'bootstrap/dist/css/bootstrap.css';

@@ -2,8 +2,8 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/ban-types */
 import axios, { AxiosResponse } from "axios";
-import messages from "../util/messages";
-import responses from "../util/responses";
+import messages from "../../util/messages";
+import responses from "../../util/responses";
 
 axios.interceptors.response.use(
   async (response) => {

@@ -6,12 +6,12 @@
     <router-view v-if="!Logged"/>
 </template>
 <script setup lang="ts">
-  import MainLayout from '@/components/MainLayout.vue'
+  import MainLayout from '@/presentation/components/Layout/MainLayout.vue'
   import { storeToRefs } from 'pinia';
-  import { UserStore } from './stores/UserStore';
+  import { UserStore } from './presentation/stores/UserStore';
   
-  const { Logged } = storeToRefs(UserStore());
-
+ // const { Logged } = storeToRefs(UserStore());
+var Logged = true;
 </script>
 <style>
 #app {
