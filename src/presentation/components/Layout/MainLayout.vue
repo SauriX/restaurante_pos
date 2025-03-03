@@ -1,6 +1,6 @@
 <template>
      <div>
-          <BNavbar v-b-color-mode="'dark'" toggleable="lg" variant="primary">
+          <BNavbar v-b-color-mode="'dark'" toggleable="lg" class="bg-layout">
                <BNavbarBrand href="#">NavBar</BNavbarBrand>
                <BNavbarToggle target="nav-collapse" />
                <BCollapse id="nav-collapse" is-nav>
@@ -39,17 +39,19 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-import { computed } from 'vue';
-const router = useRouter();
-const routes = computed(() => {
+//import { useRouter } from 'vue-router';
+//import { computed } from 'vue';
+import { BNavbar,BNavbarBrand,BNavbarToggle,BCollapse,BNavbarNav,BNavItemDropdown,BDropdownItem,BNavForm,BFormInput,BButton } from 'bootstrap-vue-next'
+//const router = useRouter();
+/* const routes = computed(() => {
      return router.options.routes.filter(route => route.meta && route.meta.show);
-});
+}); */
 </script>
 
 
 <style scoped>
 .bg-layout {
      background-color: #153E4B;
+     color: white;
 }
 </style>

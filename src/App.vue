@@ -7,8 +7,7 @@
 </template>
 <script setup lang="ts">
   import MainLayout from '@/presentation/components/Layout/MainLayout.vue'
-  import { storeToRefs } from 'pinia';
-  import { UserStore } from './presentation/stores/UserStore';
+
   
  // const { Logged } = storeToRefs(UserStore());
 var Logged = true;
