@@ -4,12 +4,22 @@ import { reactive } from 'vue';
 
 export  class LocalRepository implements IUserRepository{
   private data: User[];
-
+  
   constructor() {
     // JSON local dentro del código
     this.data = reactive([  // ⬅ Hacer el array reactivo
       { id: 1, name: "Item 1", email: "email1@email.com" },
       { id: 2, name: "Item 2", email: "email2@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
+      { id: 3, name: "Item 3", email: "email3@email.com" },
       { id: 3, name: "Item 3", email: "email3@email.com" },
     ]);
   }

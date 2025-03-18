@@ -1,0 +1,15 @@
+
+.DivWithScroll{
+    height: 67vh;
+    overflow-y: auto;
+}
+
+.header {
+    border: 1px;
+    border-style: solid;
+    border-color: #153E4B;
+    background-color: #0f2e38;
+    color: aliceblue !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

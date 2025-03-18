@@ -50,7 +50,8 @@ axios.interceptors.response.use(
 const responseBody = (response: AxiosResponse) => response?.data;
 const responseB = (response: AxiosResponse) => response;
 
-export const baseURL = process.env.VUE_APP_BASE_URL;
+//export const baseURL = process.env.VUE_APP_BASE_URL;
+export const baseURL = "https://localhost:44388/";
 export const coreBaseURL = process.env.VUE_APP_CORE_URL;
 const requests = {
   get: (url: string, api = "base") =>

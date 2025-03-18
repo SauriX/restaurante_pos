@@ -1,17 +1,16 @@
 <template>
-  <main-layout v-if="Logged">
+  <main-layout v-if="userStore.Logged">
     <router-view />
   </main-layout>
 
-    <router-view v-if="!Logged"/>
+  <router-view v-if="!userStore.Logged" />
 </template>
 <script setup lang="ts">
-  import MainLayout from '@/presentation/components/Layout/MainLayout.vue'
-  import { storeToRefs } from 'pinia';
-  import { UserStore } from './presentation/stores/UserStore';
-  
- // const { Logged } = storeToRefs(UserStore());
-var Logged = true;
+import MainLayout from '@/presentation/components/Layout/MainLayout.vue'
+import { UserStore } from '@/presentation/stores/UserStore';
+const userStore = UserStore();
+
+
 </script>
 <style>
 #app {
@@ -22,16 +21,5 @@ var Logged = true;
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
