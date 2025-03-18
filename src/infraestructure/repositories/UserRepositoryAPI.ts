@@ -7,6 +7,7 @@ export class UserRepositoryAPI implements IUserRepository {
 
   async getUsers(): Promise<User[]> {
     const response = await axios.get(this.API_URL);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return response.data.map((user: any) => new User(user.id, user.name, user.email));
   }
 

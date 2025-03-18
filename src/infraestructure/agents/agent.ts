@@ -131,6 +131,7 @@ const requests = {
   print: (
     urlbase: string,
     data?: Object | FormData,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     api = "base"
   ): Promise<void> =>
     new Promise<void>((resolve, reject) => {
