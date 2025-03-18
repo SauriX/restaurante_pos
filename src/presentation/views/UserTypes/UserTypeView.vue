@@ -24,7 +24,7 @@ const table = {
     actions: [
         {
             icon: ['fas', 'edit'],  // Solo ícono de Font Awesome
-            method: (item: any) => { editUser(item) },
+            method: (item: UserTypeList) => { editUser(item) },
             class: 'btn-primary'
         }
     ]
@@ -54,8 +54,5 @@ const editUser = (row: UserTypeList) => {
     router.push({ name: 'UserTypesDetail', params: { id: row.idUserType } })
 };
 
-const deleteUser = (row: any) => {
-    console.log('Eliminar usuario:', row);
-};
 </script>
 <style scoped></style>

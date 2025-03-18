@@ -63,14 +63,25 @@ const routes = computed(() => {
 
 // Agrupar rutas por categoría
 const categorizedRoutes = computed(() => {
+     // Creamos un objeto vacío para guardar las categorías
      return routes.value.reduce((acc: Record<string, RouteRecordRaw[]>, route) => {
+          
+          // Obtenemos la categoría de la ruta
           const category = route.meta?.category as string | undefined;
+          
+          // Si la ruta tiene categoría...
           if (category) {
+               
+               // Si el cajón no existe, lo creamos
                if (!acc[category]) {
                     acc[category] = [];
                }
+
+               // Metemos la ruta en su categoría
                acc[category].push(route);
           }
+
+          // Devolvemos el objeto con las rutas organizadas
           return acc;
      }, {} as Record<string, RouteRecordRaw[]>);
 });
@@ -78,7 +89,7 @@ const categorizedRoutes = computed(() => {
 
 // Obtener rutas sin categoría
 const uncategorizedRoutes = computed(() => {
-     return routes.value.filter(route => !route.meta!.category);
+     return routes.value.filter(route => !route.meta?.category);
 });
 </script>
 

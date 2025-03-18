@@ -2,7 +2,6 @@ import { UserTypeUseCases } from "@/application/use-cases/UserTypeUseCases";
 import { UserTypeForm, UserTypeList } from "@/domain/entities/UserType";
 import { UserTypeRepository } from "@/infraestructure/repositories/UserTypeRepository";
 import { defineStore } from "pinia";
-import { reactive } from "vue";
 const userTypeRepository = new UserTypeRepository();
 const userTypeUseCases = new UserTypeUseCases(userTypeRepository);
 export const UserTypeStore = defineStore("UserType", {
