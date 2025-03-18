@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../presentation/views/HomeView.vue";
 import LoginView from "@/presentation/views/LoginView.vue";
 import TestView from "@/presentation/views/TestView.vue";
+import ConfigurationView from "@/presentation/views/ConfigurationView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -101,6 +102,17 @@ const routes: Array<RouteRecordRaw> = [
       show: false,
       name: "",
       category: "Catalogos",
+    },
+  },
+  {
+    path: "/Configuration",
+    name: "Configuration",
+    component: ConfigurationView,
+    meta: {
+      requiresAuth: false,
+      show: true,
+      name: "Configuracion general",
+      category: "Configuracion",
     },
   },
 ];

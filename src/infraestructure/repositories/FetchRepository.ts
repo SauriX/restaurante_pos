@@ -1,6 +1,5 @@
 import { IUserRepository } from "@/domain/repositories/IUserRepository";
 import { User } from "../../domain/entities/User";
-import { reactive } from "vue";
 
 export class FetchRepository implements IUserRepository {
 

@@ -44,6 +44,7 @@ import { useModal,BButton,BModal } from 'bootstrap-vue-next'
 const modalVisible = ref(false);
 
 // Función para abrir el modal por ID usando useModal
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { show, hide } = useModal('my-modal');
 
 // Función para mostrar el modal

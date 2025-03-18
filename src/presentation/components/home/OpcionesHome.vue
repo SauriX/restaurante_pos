@@ -17,9 +17,11 @@
 
 <script setup lang="ts">
 import {  defineEmits } from 'vue';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emit = defineEmits(["confirmar", "cancelar"]);
 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const clicktest = () => {
     alert("hola");
 };

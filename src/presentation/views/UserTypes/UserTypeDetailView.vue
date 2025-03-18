@@ -53,8 +53,10 @@ onMounted(async () => {
     if (!props.id) {
         return;
     }
-    userType.value = await userTypeStore.getUserTypeById(props.id);
-    console.log("editar");
+
+        userType.value = await userTypeStore.getUserTypeById(props.id);
+
+    
 });
 //funcion para regresar
 const back = () => {
