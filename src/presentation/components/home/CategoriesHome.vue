@@ -30,12 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted,defineProps,ref,defineEmits } from 'vue';
-import { UserStore } from '@/presentation/stores/UserStore';
+import { defineProps,ref,defineEmits } from 'vue';
 import { Category } from '@/domain/entities/Category';
 
 defineProps<{categories:Category[]}>();
-const userStore = UserStore();
 const activecategory = ref(0);
 const emit = defineEmits(["category"]);
 
@@ -46,9 +44,7 @@ const selectcategory = (id:number)=>{
 
 
 
-onMounted(() => {
-    userStore.fetchUsers();
-});
+
 </script>
 
 <style scoped>

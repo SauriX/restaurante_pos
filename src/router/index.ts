@@ -3,6 +3,12 @@ import HomeView from "../presentation/views/HomeView.vue";
 import LoginView from "@/presentation/views/LoginView.vue";
 import TestView from "@/presentation/views/TestView.vue";
 import ConfigurationView from "@/presentation/views/ConfigurationView.vue";
+import { UserStore } from "@/presentation/stores/UserStore";
+import { useAlertStore } from "@/presentation/stores/AlertStore";
+import UsersView from "@/presentation/views/Users/UsersView.vue";
+import UsersDetailView from "@/presentation/views/Users/UsersDetailView.vue";
+import DiscuntView from "@/presentation/views/Catalogos/Discunts/DiscuntView.vue";
+import DiscuntDetail from "@/presentation/views/Catalogos/Discunts/DiscuntDetail.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
     component: TestView,
     meta: {
       requiresAuth: false,
-      show: true,
+      show: false,
       name: "test",
       category: "Catalogos",
     },
@@ -47,9 +53,10 @@ const routes: Array<RouteRecordRaw> = [
       ),
     meta: {
       requiresAuth: false,
-      show: true,
+      show: false,
       name: "about",
       category: "Catalogos",
+      roles: ["2"],
     },
   },
   {
@@ -64,7 +71,7 @@ const routes: Array<RouteRecordRaw> = [
       ),
     meta: {
       requiresAuth: false,
-      show: true,
+      show: false,
       name: "Tipos de usuario",
       category: "Catalogos",
     },
@@ -87,7 +94,7 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/Catalogos/UserTypes/detail/:id",
+    path: "/Catalogos/UserTypes/:id",
     name: "UserTypesDetail",
     props: true,
     // route level code-splitting
@@ -115,6 +122,80 @@ const routes: Array<RouteRecordRaw> = [
       category: "Configuracion",
     },
   },
+  {
+    path: "/Configuracion/Usuarios",
+    name: "Users",
+    component: UsersView,
+    meta: {
+      requiresAuth: false,
+      show: true,
+      name: "Usuarios",
+      category: "Configuracion",
+    },
+  },
+  {
+    path: "/Configuracion/Usuarios/Nuevo",
+    name: "UsersAdd",
+    component:UsersDetailView,
+    meta: {
+      requiresAuth: false,
+      show: false,
+      name: "",
+      category: "Configuracion",
+    },
+  },
+  {
+    path: "/Configuracion/Usuarios/:id",
+    name: "UsersUpdate",
+    props:true,
+    component: UsersDetailView,
+    meta: {
+      requiresAuth: false,
+      show: false,
+      name: "",
+      category: "Configuracion",
+    },
+    
+  },
+  {
+    path: "/Configuracion/Descuentos",
+    name: "Discunts",
+    props:true,
+    component: DiscuntView,
+    meta: {
+      requiresAuth: false,
+      show: true,
+      name: "Descuentos",
+      category: "Configuracion",
+    },
+    
+  },
+  {
+    path: "/Configuracion/Descuentos/Nuevo",
+    name: "DiscuntsAdd",
+    props:true,
+    component: DiscuntDetail,
+    meta: {
+      requiresAuth: false,
+      show: false,
+      name: "",
+      category: "Configuracion",
+    },
+    
+  },
+  {
+    path: "/Configuracion/Descuentos/:id",
+    name: "DiscuntsUpdate",
+    props:true,
+    component: DiscuntDetail,
+    meta: {
+      requiresAuth: false,
+      show: false,
+      name: "",
+      category: "Configuracion",
+    },
+    
+  },
 ];
 
 const router = createRouter({
@@ -122,4 +203,28 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth) {
+    try {
+      const userStore = UserStore();
+      const alertStore = useAlertStore();
+      const userinfo = await userStore.getUserInfo();
+      if (userinfo) {
+        if(to.meta.roles && Array.isArray(to.meta.roles)){
+          if(to.meta.roles.some(x => x === userinfo.role)){
+            next();
+          }else{
+            alertStore.triggerAlert("No tienes permisos para acceder a esta página.", "danger", 3000,"middle-center");
+            next(from.fullPath); // Esto previene la redirección y mantiene al usuario en la misma página
+          }
+        }
+        next(); // ✅ El usuario está autenticad0
+      }
+    } catch {
+      next("/login"); // 🔴 No autenticado, redirigir a login
+    }
+  } else {
+    next();
+  }
+});
 export default router;

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export function isNullOrEmpty(value: string | null | undefined): boolean {
     return !value || value.trim().length === 0;
 }
+const sleep = (ms:number) => new Promise (r => setTimeout(r, ms));
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function errorhelper(error: any) {
     const errorlist: { key: string; message: string }[] = [];
 

@@ -19,7 +19,7 @@
 
                     <input type="text" v-model="searchText" placeholder="Buscar..." class="form-control" />
                     <button class="btn btn-outline-secondary" type="button" id="button-addon1"
-                        disabled><font-awesome-icon :icon="['fas', 'magnifying-glass']" /></button>
+                        disabled><font-awesome-icon :icon="['fas', 'magnifying-glass']" :beat-fade="loading"/></button>
                 </div>
 
             </div>

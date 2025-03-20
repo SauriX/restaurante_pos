@@ -1,35 +1,65 @@
 import { defineStore } from "pinia";
 
-import { User } from '@/domain/entities/User';
-import { GetUsersUseCase } from '@/application/use-cases/GetUsersUseCase';
-import { CreateUserUseCase } from '@/application/use-cases/CreateUserUseCase';
-import { LocalRepository } from '@/infraestructure/repositories/LocalRepository';
-/* import { UserRepositoryAPI } from "@/infraestructure/repositories/UserRepositoryAPI";
-import { FetchRepository } from "@/infraestructure/repositories/FetchRepository" */
+import { User, UserForm, UserInfo, UserLogin } from '@/domain/entities/User';
+import { UserRepository } from "@/infraestructure/repositories/UserRepository";
+import { UsersUseCases } from "@/application/use-cases/UsersUseCases";
+
+
 // Crear instancias de los casos de uso con el repositorio
-const userRepository = new LocalRepository(); // Crear una instancia de la clase
-const getUsersUseCase = new GetUsersUseCase(userRepository);
-const createUserUseCase = new CreateUserUseCase(userRepository);
+const userRepository = new UserRepository ();// Crear una instancia de la clase
+const usersUseCases = new UsersUseCases(userRepository);
 
 export const UserStore = defineStore('Usuarios',{
    // const 
     state: () => ({
-        users: [] as User[],    
+        Users: [] as User[],    
         Logged:true,
-        user:new User()
+        User:new UserForm(),
+        UserInfo:new UserInfo()
       }),
       actions: {
-        async fetchUsers() {
-          this.users = await getUsersUseCase.execute();
-          this.users = [...this.users]; // 💡 Solución: forzar la reactividad
+        async getAllUsers() {
+          if(this.Users.length==0){
+            this.Users = await usersUseCases.getAll();
+          }
+          
+          this.Users = [...this.Users]; // 💡 Solución: forzar la reactividad
+
         },
-        async addUser(user: User) {
-          await createUserUseCase.execute(user);
-          this.fetchUsers(); // Refrescar lista
+        async getById(id:number){
+          this.User=await usersUseCases.getById(id);
         },
-        toggleLogged(){
-          this.Logged = !this.Logged;
+        async addUser(user:UserForm) {
+          const UserList = await usersUseCases.addUser(user);
+          if(this.Users.length>0){
+            this.Users.push(UserList); 
+          }
+          return UserList;
+        },
+        async updateUser(user:UserForm){
+          const userList = await usersUseCases.updateUser(user);
+          if(this.Users.length>0){
+              this.Users = this.Users.map((type) =>
+                  type.userId === user.userId ? userList : type
+              );
+          }
+          return userList;
+        },
+        async Login(user:UserLogin){
+          await usersUseCases.Login(user);
+          
+
+        },
+        async getUserInfo(){
+          const userInfos = await usersUseCases.getUserInfo();
+          this.UserInfo = userInfos;
+          if(userInfos){
+            this.Logged = true;
+          }else{
+            this.Logged = false;
+          }
+          return(userInfos);
         }
       }
-    //return {Logged}
+
 })

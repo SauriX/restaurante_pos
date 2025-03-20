@@ -25,9 +25,7 @@ import OrderHome from "../components/home/OrderHome.vue";
 import ProductosHome from "../components/home/ProductosHome.vue";
 import OpcionesHome from "../components/home/OpcionesHome.vue";
 import { CategoryStore } from "../stores/CategoryStore";
-
 import { ProductStore } from "../stores/ProductStore";
-
 const categoryStore = CategoryStore();
 const productsStore = ProductStore();
 const categoryId = ref(2);
@@ -39,5 +37,9 @@ const setCategory = (category:number)=>{
 onMounted(async ()=>{
   await categoryStore.getCategories();
   await productsStore.getProducts();
+  
+
+
+
 });
 </script>
