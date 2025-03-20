@@ -10,14 +10,14 @@ export class CategoryesLocalRepository implements ICategoryRepository {
 
 
     this.categories = reactive([
-        { id: 1, name: "ENTRADAS" },
-        { id: 2, name: "BEBIDAS" },
-        { id: 3, name: "BURGERS" },
-        { id: 4, name: "BONELESS" },
-        { id: 5, name: "BOTANAS" },
-        { id: 6, name: "CUBETAZOS" },
-        { id: 7, name: "TEKILAS" },
-        { id: 8, name: "ALITAS" },
+        { id: 1, name: "ENTRADAS",discunt :"" },
+        { id: 2, name: "BEBIDAS",discunt :"" },
+        { id: 3, name: "BURGERS",discunt :"" },
+        { id: 4, name: "BONELESS",discunt :"" },
+        { id: 5, name: "BOTANAS" ,discunt :""},
+        { id: 6, name: "CUBETAZOS",discunt :"" },
+        { id: 7, name: "TEKILAS",discunt :"" },
+        { id: 8, name: "ALITAS" ,discunt :""},
         
     ]);
 }

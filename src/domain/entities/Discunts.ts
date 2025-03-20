@@ -2,7 +2,7 @@ export class Discunt {
     constructor(
         public discuntId: number =0,
         public discuntName: string="",
-        public porcent: number=0,
+        public porcent: string="",
         public active: string=""
     ){}
 }

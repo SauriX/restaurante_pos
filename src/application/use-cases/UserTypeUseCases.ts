@@ -4,15 +4,15 @@ import { IdUserTypeRepository } from "@/domain/repositories/IUserTypeRepository"
 export class UserTypeUseCases {
     constructor(private UserTypeRepository: IdUserTypeRepository) {}
     async getAllUserType(): Promise<UserTypeList[]> {
-        return this.UserTypeRepository.getAllUserType();
+        return await this.UserTypeRepository.getAllUserType();
     }
     async getUserTypeById(id: number): Promise<UserTypeForm> {
-        return this.UserTypeRepository.getUserTypeById(id);
+        return await this.UserTypeRepository.getUserTypeById(id);
     }
     async createUserType(userType: UserTypeForm): Promise<UserTypeList> {
-        return this.UserTypeRepository.createUserType(userType);
+        return await this.UserTypeRepository.createUserType(userType);
     }
     async updateUserType(userType: UserTypeForm): Promise<UserTypeList> {
-        return this.UserTypeRepository.updateUserType(userType);
+        return await this.UserTypeRepository.updateUserType(userType);
     }
 }

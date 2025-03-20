@@ -160,7 +160,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Configuracion/Descuentos",
     name: "Discunts",
-    props:true,
+    props:false,
     component: DiscuntView,
     meta: {
       requiresAuth: false,
@@ -173,7 +173,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Configuracion/Descuentos/Nuevo",
     name: "DiscuntsAdd",
-    props:true,
+    props:false,
     component: DiscuntDetail,
     meta: {
       requiresAuth: false,

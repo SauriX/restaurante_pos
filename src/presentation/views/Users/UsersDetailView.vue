@@ -97,12 +97,12 @@ const props = defineProps(
 onMounted(async () => {
     loading.value = true;
     await userTypeStore.getAllUserTypes();
-    if (!props.id) {
-        loading.value = false;
-        return;
+    if (props.id) {
+        await userStore.getById(props.id);
+        user.value = userStore.User;
+        
     }
-    await userStore.getById(props.id);
-    user.value = userStore.User;
+
     loading.value = false;
 
 });

@@ -3,7 +3,7 @@
 export function isNullOrEmpty(value: string | null | undefined): boolean {
     return !value || value.trim().length === 0;
 }
-const sleep = (ms:number) => new Promise (r => setTimeout(r, ms));
+export const sleep = (ms:number) => new Promise (r => setTimeout(r, ms));
 
 export function errorhelper(error: any) {
     const errorlist: { key: string; message: string }[] = [];
