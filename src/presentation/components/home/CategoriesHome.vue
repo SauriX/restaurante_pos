@@ -8,7 +8,7 @@
             <div class=" col-12 mt-1">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Categoria"
-                        aria-label="Categoria" aria-describedby="button-addon2">
+                        aria-label="Categoria" aria-describedby="button-addon2" v-model="searchText">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar <font-awesome-icon
                             :icon="['fas', 'magnifying-glass']" :spin="false" /></button>
                 </div>
@@ -17,7 +17,7 @@
             <div style="color: aliceblue !important;" class=" col-12 DivWithScroll">
 
                 <ul class="nav flex-column ">
-                    <li class="nav-item item-nav" v-for=" category in categories" :key="category.id">
+                    <li class="nav-item item-nav" v-for=" category in filteredData" :key="category.id">
                         <a class="nav-link " :class=" category.id == activecategory? 'active':''" aria-current="page" href="#" @click="selectcategory(category.id)">{{ category.name }}</a>
                     </li>
 
@@ -30,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps,ref,defineEmits } from 'vue';
+import { defineProps,ref,defineEmits, computed } from 'vue';
 import { Category } from '@/domain/entities/Category';
-
-defineProps<{categories:Category[]}>();
+const searchText = ref('');
+const props=defineProps<{categories:Category[]}>();
 const activecategory = ref(0);
 const emit = defineEmits(["category"]);
 
@@ -42,7 +42,14 @@ const selectcategory = (id:number)=>{
     emit('category',id)
 }
 
-
+// Filtrar los datos por el texto ingresado
+const filteredData = computed(() => {
+    return props.categories.filter((item) => {
+        return Object.values(item).some(value =>
+            String(value).toLowerCase().includes(searchText.value.toLowerCase())
+        );
+    });
+});
 
 
 </script>

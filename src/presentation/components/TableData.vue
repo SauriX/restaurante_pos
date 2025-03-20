@@ -147,8 +147,8 @@ const props = defineProps<{
 // Estado del filtro y la paginación
 const searchText = ref('');
 const currentPage = ref(1);
-const itemsPerPage = ref(5); // Valor inicial de elementos por página
-const pageOptions = ref([5, 10, 15, 20]); // Opciones para el selector de "Items por página"
+const itemsPerPage = ref(10); // Valor inicial de elementos por página
+const pageOptions = ref([10, 20, 25, 30]); // Opciones para el selector de "Items por página"
 const pageRange = 5;
 // Filtrar los datos por el texto ingresado
 const filteredData = computed(() => {

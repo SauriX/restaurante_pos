@@ -7,8 +7,10 @@ import { UserStore } from "@/presentation/stores/UserStore";
 import { useAlertStore } from "@/presentation/stores/AlertStore";
 import UsersView from "@/presentation/views/Users/UsersView.vue";
 import UsersDetailView from "@/presentation/views/Users/UsersDetailView.vue";
-import DiscuntView from "@/presentation/views/Catalogos/Discunts/DiscuntView.vue";
-import DiscuntDetail from "@/presentation/views/Catalogos/Discunts/DiscuntDetail.vue";
+import DiscuntView from "@/presentation/views/Configuration/Discunts/DiscuntView.vue";
+import DiscuntDetail from "@/presentation/views/Configuration/Discunts/DiscuntDetail.vue";
+import CategorieView from "@/presentation/views/Catalogos/Categories/CategorieView.vue";
+import CategoriesDetails from "@/presentation/views/Catalogos/Categories/CategoriesDetails.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -193,6 +195,44 @@ const routes: Array<RouteRecordRaw> = [
       show: false,
       name: "",
       category: "Configuracion",
+    },
+    
+  },  {
+    path: "/Catalogos/Categorias",
+    name: "Categories",
+    props:false,
+    component: CategorieView,
+    meta: {
+      requiresAuth: false,
+      show: true,
+      name: "Categorias",
+      category: "Catalogos",
+    },
+    
+  },
+  {
+    path: "/Catalogos/Categorias/Nuevo",
+    name: "CategoriesAdd",
+    props:false,
+    component: CategoriesDetails,
+    meta: {
+      requiresAuth: false,
+      show: false,
+      name: "",
+      category: "Catalogos",
+    },
+    
+  },
+  {
+    path: "/Catalogos/Categorias/:id",
+    name: "CategoriesUpdate",
+    props:true,
+    component: CategoriesDetails,
+    meta: {
+      requiresAuth: false,
+      show: false,
+      name: "",
+      category: "Catalogos",
     },
     
   },
