@@ -1,4 +1,5 @@
 <template>
+    <AlertComponent />
   <main-layout v-if="userStore.Logged">
     <router-view />
   </main-layout>
@@ -8,6 +9,7 @@
 <script setup lang="ts">
 import MainLayout from '@/presentation/components/Layout/MainLayout.vue'
 import { UserStore } from '@/presentation/stores/UserStore';
+import AlertComponent from "@/presentation/components/AlertComponent.vue";
 const userStore = UserStore();
 
 

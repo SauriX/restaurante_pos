@@ -22,7 +22,7 @@
 
             <div class="text-end">
                 <button class="btn btn-primary" @click="save">
-                    <font-awesome-icon icon="fa-solid fa-save" v-if="!loading"/> <BSpinner v-if="loading"/> Guardar
+                    <font-awesome-icon icon="fa-solid fa-save"  :beat-fade="loading"/> Guardar
                 </button>
             </div>
         </div>
@@ -34,7 +34,7 @@ import { UserTypeForm } from '@/domain/entities/UserType';
 import { UserTypeStore } from '@/presentation/stores/UserTypeStore';
 import { defineProps, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import {BSpinner} from 'bootstrap-vue-next';
+
 const router = useRouter();
 const userTypeStore = UserTypeStore();
 const loading = ref(false);
@@ -65,7 +65,9 @@ const back = () => {
 
 //funcion para guardar
 const save = async ()=>{
+    
     loading.value = true;
+    
     if(props.id){
         await userTypeStore.updateUserType(userType.value);
         console.log("guardar");

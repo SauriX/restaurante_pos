@@ -1,6 +1,10 @@
-import { User } from "../entities/User";
+import { User, UserForm, UserInfo, UserLogin } from "../entities/User";
 
 export interface IUserRepository {
     getUsers(): Promise<User[]>;
-    createUser(user: User): Promise<void>;
+    getUserByid(id:number):Promise<UserForm>;
+    createUser(user: UserForm): Promise<User>;
+    updateUser(user: UserForm):Promise<User>
+    login(user:UserLogin):Promise<string>;
+    getUserInfo():Promise<UserInfo>
 }

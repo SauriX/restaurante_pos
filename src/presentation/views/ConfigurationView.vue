@@ -175,8 +175,8 @@ const back = () => {
 }
 
 const save = async () => {
-   await configuratioStore.updateConfiguration(configurationForm.value);
-   back();
+    await configuratioStore.updateConfiguration(configurationForm.value);
+    back();
 }
 </script>
 <style scoped></style>

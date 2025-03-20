@@ -1,7 +1,7 @@
 <template>
      <div>
           <BNavbar v-b-color-mode="'dark'" toggleable="lg" class="bg-layout" sticky="top">
-               <BNavbarBrand href="#">NavBar</BNavbarBrand>
+               <BNavbarBrand href="/">{{ configurationStore.configuration.establecimientoNombre }}</BNavbarBrand>
                <BNavbarToggle target="nav-collapse" />
                <BCollapse id="nav-collapse" is-nav>
                     <BNavbarNav>
@@ -22,10 +22,10 @@
 
                     <!-- Right aligned nav items -->
                     <BNavbarNav class="ms-auto mb-2 mb-lg-0">
-                         <BNavItem href="#" disabled>Sucursal</BNavItem>
+                         <BNavItem href="#" disabled>{{ configurationStore.configuration.establecimientoNombre }}</BNavItem>
                          <BNavItemDropdown right>
                               <template #button-content>
-                                   <em>User</em>
+                                   <em>{{ userStore.UserInfo.username }}</em>
                               </template>
                               <BDropdownItem href="#">Profile</BDropdownItem>
                               <BDropdownItem href="#">Sign Out</BDropdownItem>
@@ -42,7 +42,7 @@
 
 <script lang="ts" setup>
 import { RouteRecordRaw, useRouter } from 'vue-router';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import {
      BNavbar,
      BCollapse,
@@ -53,6 +53,8 @@ import {
      BNavbarToggle,
      BNavbarBrand
 } from 'bootstrap-vue-next';
+import { UserStore } from '@/presentation/stores/UserStore';
+import { ConfigurationStore } from '@/presentation/stores/ConfigurationStore';
 
 const router = useRouter();
 
@@ -60,7 +62,8 @@ const router = useRouter();
 const routes = computed(() => {
      return router.options.routes.filter(route => route.meta && route.meta.show);
 });
-
+const userStore = UserStore();
+const configurationStore = ConfigurationStore();
 // Agrupar rutas por categoría
 const categorizedRoutes = computed(() => {
      // Creamos un objeto vacío para guardar las categorías
@@ -90,6 +93,10 @@ const categorizedRoutes = computed(() => {
 // Obtener rutas sin categoría
 const uncategorizedRoutes = computed(() => {
      return routes.value.filter(route => !route.meta?.category);
+});
+
+onMounted(async () =>{
+     await configurationStore.getConfiguration();
 });
 </script>
 

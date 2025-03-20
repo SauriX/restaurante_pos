@@ -8,12 +8,12 @@
                             <h3 class="mb-5">Login</h3>
                             
                             <div class="form-floating mb-4">
-                                <input type="email" id="typeEmailX-2" class="form-control" placeholder="Email" required>
+                                <input type="email" id="typeEmailX-2" class="form-control" placeholder="Usuario" v-model="user.userNickName"  required>
                                 <label for="typeEmailX-2">Usuario</label>
                             </div>
                             
                             <div class="form-floating mb-4">
-                                <input type="password" id="typePasswordX-2" class="form-control" placeholder="Password" required>
+                                <input type="password" id="typePasswordX-2" class="form-control" placeholder="Password" v-model="user.password" required>
                                 <label for="typePasswordX-2">Contraseña</label>
                             </div>
                             
@@ -21,7 +21,7 @@
                                 
                             </div>
                             
-                            <button class="btn btn-primary btn-lg w-100" type="submit">Login</button>
+                            <button class="btn btn-primary btn-lg w-100" type="submit" @click="Login">Login</button>
                         </div>
                     </div>
                 </div>
@@ -30,3 +30,17 @@
     </section>
 
 </template>
+
+<script lang="ts" setup>
+import { UserLogin } from '@/domain/entities/User';
+import { UserStore } from '../stores/UserStore';
+import { useRouter } from 'vue-router';
+
+let user = new UserLogin();
+const userStore = UserStore();
+const router = useRouter();
+const Login = async () =>{
+    await userStore.Login(user);
+    router.push("/");
+}
+</script>
