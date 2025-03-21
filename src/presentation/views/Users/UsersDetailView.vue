@@ -71,16 +71,13 @@
 
 <script lang="ts" setup>
 import { UserForm } from '@/domain/entities/User';
-import { useAlertStore } from '@/presentation/stores/AlertStore';
 import { UserStore } from '@/presentation/stores/UserStore';
 import { UserTypeStore } from '@/presentation/stores/UserTypeStore';
 import router from '@/router';
-import { errorhelper } from '@/util/helpers';
 import { BFormCheckbox } from 'bootstrap-vue-next'
 import { onMounted, ref, defineProps } from 'vue';
 const userTypeStore = UserTypeStore();
 const userStore = UserStore();
-const alertStore = useAlertStore();
 const passicon = ref("fa-solid fa-eye");
 const inputType = ref<'password' | 'text'>('password');
 const user = ref(new UserForm());
@@ -100,7 +97,7 @@ onMounted(async () => {
     if (props.id) {
         await userStore.getById(props.id);
         user.value = userStore.User;
-        
+
     }
 
     loading.value = false;
@@ -124,27 +121,17 @@ const back = () => {
 
 const save = async () => {
     loading.value = true;
-    try {
-        if (props.id) {
-            await userStore.updateUser(user.value);
-        } else {
-            await userStore.addUser(user.value);
-        }
-        back();
-        loading.value = false;
-    } catch (error) {
-        var erros = errorhelper(error);
-        if(props.id){
-            await userStore.getById(props.id);
-            user.value = userStore.User;
-        }
 
-        erros.forEach(err=>{
-            alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
-        })
-        
-        loading.value = false;
+    if (props.id) {
+        await userStore.updateUser(user.value);
+    } else {
+        await userStore.addUser(user.value);
     }
+    loading.value = false;
+    if(!userStore.error){
+        back();
+    }
+
 }
 </script>
 <style scoped></style>
