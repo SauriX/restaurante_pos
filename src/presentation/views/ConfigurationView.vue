@@ -156,6 +156,7 @@ import Printer from '@/libraries/printer.js'
 import { Configuration } from '@/domain/entities/Configuration';
 import { useRouter } from 'vue-router';
 import { ConfigurationStore } from '../stores/ConfigurationStore';
+import pages from '@/util/pageName';
 
 const router = useRouter();
 const printer = new Printer();
@@ -171,7 +172,7 @@ onMounted(async () => {
     configurationForm.value = configuratioStore.configuration;
 });
 const back = () => {
-    router.push("/");
+    router.push({name:pages.home});
 }
 
 const save = async () => {

@@ -10,6 +10,7 @@ import { UserTypeList } from '@/domain/entities/UserType';
 import CatalogLayout from '@/presentation/components/Layout/CatalogLayout.vue';
 import TableData from '@/presentation/components/TableData.vue';
 import { UserTypeStore } from '@/presentation/stores/UserTypeStore';
+import pages from '@/util/pageName';
 
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -44,14 +45,13 @@ onMounted(async () => {
 
 });
 const adduserType = () => {
-    router.push({ name: 'UserTypesNew' })
+    router.push({ name: pages.userTypesAdd })
 };
 
 
 // Métodos para manejar acciones
 const editUser = (row: UserTypeList) => {
-    console.log('Editar usuario:', row.idUserType);
-    router.push({ name: 'UserTypesDetail', params: { id: row.idUserType } })
+    router.push({ name: pages.userTypesDetail, params: { id: row.idUserType } })
 };
 
 </script>

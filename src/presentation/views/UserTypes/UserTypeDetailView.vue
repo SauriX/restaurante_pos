@@ -32,6 +32,7 @@
 <script lang="ts" setup>
 import { UserTypeForm } from '@/domain/entities/UserType';
 import { UserTypeStore } from '@/presentation/stores/UserTypeStore';
+import pages from '@/util/pageName';
 import { defineProps, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -57,7 +58,7 @@ onMounted(async () => {
 });
 //funcion para regresar
 const back = () => {
-    router.push({ name: 'UserTypes' })
+    router.push({ name: pages.userTypes })
 };
 
 //funcion para guardar

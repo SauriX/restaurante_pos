@@ -12,6 +12,7 @@ import { User } from '@/domain/entities/User';
 import { UserStore } from '@/presentation/stores/UserStore';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import pages from '@/util/pageName';
 
 const router = useRouter();
 const userStore = UserStore();
@@ -38,11 +39,11 @@ onMounted(async ()=>{
     loading.value = false;
 });
 const addUser=()=>{
-    router.push({name:"UsersAdd"});
+    router.push({name:pages.usersAdd});
 }
 
 const editUser = (user:User)=>{
-    router.push({name:"UsersUpdate",params:{id:user.userId}});
+    router.push({name:pages.userUpdate,params:{id:user.userId}});
 }
 </script>
 <style scoped></style>

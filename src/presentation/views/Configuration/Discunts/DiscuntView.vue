@@ -9,6 +9,7 @@ import { Discunt } from '@/domain/entities/Discunts';
 import CatalogLayout from '@/presentation/components/Layout/CatalogLayout.vue';
 import TableData from '@/presentation/components/TableData.vue';
 import { DiscuntStore } from '@/presentation/stores/DiscuntsStore';
+import pages from '@/util/pageName';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 const loading = ref(false);
@@ -39,11 +40,11 @@ onMounted(async () => {
 });
 
 const add = () =>{
-    router.push({name:"DiscuntsAdd"});
+    router.push({name:pages.discuntsAdd});
 }
 
 const update = (item: Discunt)=>{
-    router.push({name:"DiscuntsUpdate",params:{id:item.discuntId}});
+    router.push({name:pages.discuntsUpdate,params:{id:item.discuntId}});
 }
 </script>
 <style scoped></style>

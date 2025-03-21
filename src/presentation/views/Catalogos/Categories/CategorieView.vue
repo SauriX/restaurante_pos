@@ -9,6 +9,7 @@ import { Category } from '@/domain/entities/Category';
 import CatalogLayout from '@/presentation/components/Layout/CatalogLayout.vue';
 import TableData from '@/presentation/components/TableData.vue';
 import { CategoryStore } from '@/presentation/stores/CategoryStore';
+import pages from '@/util/pageName';
 
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -40,11 +41,11 @@ onMounted(async () => {
 });
 
 const add = () =>{
-    router.push({name:"CategoriesAdd"});
+    router.push({name:pages.categoriesAdd});
 }
 
 const update = (item: Category)=>{
-    router.push({name:"CategoriesUpdate",params:{id:item.id}});
+    router.push({name:pages.categoriesUpdate,params:{id:item.id}});
 }
 </script>
 <style scoped></style>

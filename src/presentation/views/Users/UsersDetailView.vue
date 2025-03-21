@@ -74,6 +74,7 @@ import { UserForm } from '@/domain/entities/User';
 import { UserStore } from '@/presentation/stores/UserStore';
 import { UserTypeStore } from '@/presentation/stores/UserTypeStore';
 import router from '@/router';
+import pages from '@/util/pageName';
 import { BFormCheckbox } from 'bootstrap-vue-next'
 import { onMounted, ref, defineProps } from 'vue';
 const userTypeStore = UserTypeStore();
@@ -116,7 +117,7 @@ const togglePassword = () => {
 }
 
 const back = () => {
-    router.push({ name: "Users" });
+    router.push({ name: pages.users });
 }
 
 const save = async () => {

@@ -35,12 +35,13 @@
 import { UserLogin } from '@/domain/entities/User';
 import { UserStore } from '../stores/UserStore';
 import { useRouter } from 'vue-router';
+import pages from '@/util/pageName';
 
 let user = new UserLogin();
 const userStore = UserStore();
 const router = useRouter();
 const Login = async () =>{
     await userStore.Login(user);
-    router.push("/");
+    router.push({name:pages.home});
 }
 </script>

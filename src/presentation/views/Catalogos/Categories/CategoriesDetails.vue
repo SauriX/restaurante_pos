@@ -52,6 +52,7 @@ import { BFormCheckbox } from 'bootstrap-vue-next'
 import { useRouter } from 'vue-router';
 import { CategoryStore } from '@/presentation/stores/CategoryStore';
 import { CategoryForm } from '@/domain/entities/Category';
+import pages from '@/util/pageName';
 
 const props = defineProps(
     {
@@ -74,7 +75,7 @@ onMounted(async()=>{
     loading.value=false;
 });
 const back = () => {
-    router.push({name:"Categories"});
+    router.push({name:pages.categories});
 }
 const save = async  () => {
     loading.value = true;
