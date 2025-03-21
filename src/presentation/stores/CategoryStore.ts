@@ -29,7 +29,7 @@ export const CategoryStore = defineStore("Categorias",{
             } catch (error) {
                 const errors = errorhelper(error);
                 errors.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 });
                 this.error = true
             }
@@ -43,7 +43,7 @@ export const CategoryStore = defineStore("Categorias",{
             } catch (error) {
                 const errors = errorhelper(error);
                 errors.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 });
                 this.error = false;
             }
@@ -56,7 +56,7 @@ export const CategoryStore = defineStore("Categorias",{
             } catch (error) {
                 const errors = errorhelper(error);8
                 errors.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 });
                 this.error = false;
             }
@@ -72,11 +72,11 @@ export const CategoryStore = defineStore("Categorias",{
                     this.categories.push(catego);
                 }
                 this.error=false;
-                this.alertStore.triggerAlert(messages.created, "success", 10000,"bottom-right");
+                this.alertStore.triggerAlert(messages.created, "success", 10000,"top-right");
             } catch (error) {
                 const erros = errorhelper(error);
                 erros.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message,"danger",10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message,"danger",10000,"top-right");
                 });
             }
         },
@@ -90,11 +90,11 @@ export const CategoryStore = defineStore("Categorias",{
                     this.categories=this.activeCategories.map(cat=>cat.id===catego.id?catego:cat);
                 }
                 this.error=false;
-                this.alertStore.triggerAlert(messages.updated, "success", 10000,"bottom-right");
+                this.alertStore.triggerAlert(messages.updated, "success", 10000,"top-right");
             } catch (error) {
                 const erros = errorhelper(error);
                 erros.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message,"danger",10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message,"danger",10000,"top-right");
                 });
             }
         }

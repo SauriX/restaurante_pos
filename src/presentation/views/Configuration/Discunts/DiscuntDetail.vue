@@ -51,6 +51,7 @@ import { ref,defineProps, onMounted } from 'vue';
 import { BFormCheckbox } from 'bootstrap-vue-next'
 import { useRouter } from 'vue-router';
 import { DiscuntStore } from '@/presentation/stores/DiscuntsStore';
+import pages from '@/util/pageName';
 const props = defineProps(
     {
         id: {
@@ -72,7 +73,7 @@ onMounted(async()=>{
     loading.value=false;
 });
 const back = () => {
-    router.push({name:"Discunts"});
+    router.push({name:pages.discunts});
 }
 const save = async  () => {
     loading.value = true;

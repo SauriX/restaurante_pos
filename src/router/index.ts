@@ -11,11 +11,12 @@ import DiscuntView from "@/presentation/views/Configuration/Discunts/DiscuntView
 import DiscuntDetail from "@/presentation/views/Configuration/Discunts/DiscuntDetail.vue";
 import CategorieView from "@/presentation/views/Catalogos/Categories/CategorieView.vue";
 import CategoriesDetails from "@/presentation/views/Catalogos/Categories/CategoriesDetails.vue";
+import pages from "@/util/pageName";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
-    name: "login",
+    name: pages.login,
     component: LoginView,
     meta: {
       requiresAuth: false,
@@ -24,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/",
-    name: "home",
+    name: pages.home,
     component: HomeView,
     meta: {
       requiresAuth: false,
@@ -44,78 +45,43 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../presentation/views/AboutView.vue"
-      ),
-    meta: {
-      requiresAuth: false,
-      show: false,
-      name: "about",
-      category: "Catalogos",
-      roles: ["2"],
-    },
-  },
-  {
     path: "/Catalogos/UserTypes",
-    name: "UserTypes",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../presentation/views/UserTypes/UserTypeView.vue"
-      ),
+    name: pages.userTypes,
+    component: UsersView,
     meta: {
       requiresAuth: false,
       show: false,
       name: "Tipos de usuario",
       category: "Catalogos",
+      roles: ["2"],
     },
   },
   {
     path: "/Catalogos/UserTypes/nuevo",
-    name: "UserTypesNew",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../presentation/views/UserTypes/UserTypeDetailView.vue"
-      ),
+    name: pages.userTypesAdd,
+    component:UsersDetailView,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Catalogos",
+      category: "",
     },
   },
   {
     path: "/Catalogos/UserTypes/:id",
-    name: "UserTypesDetail",
+    name: pages.userTypesDetail,
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../presentation/views/UserTypes/UserTypeDetailView.vue"
-      ),
+    component: UsersDetailView,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Catalogos",
+      category: "",
     },
   },
   {
     path: "/Configuration",
-    name: "Configuration",
+    name: pages.configuration,
     component: ConfigurationView,
     meta: {
       requiresAuth: false,
@@ -126,7 +92,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/Configuracion/Usuarios",
-    name: "Users",
+    name: pages.users,
     component: UsersView,
     meta: {
       requiresAuth: false,
@@ -137,31 +103,31 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/Configuracion/Usuarios/Nuevo",
-    name: "UsersAdd",
+    name: pages.usersAdd,
     component:UsersDetailView,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Configuracion",
+      category: "",
     },
   },
   {
     path: "/Configuracion/Usuarios/:id",
-    name: "UsersUpdate",
+    name: pages.userUpdate,
     props:true,
     component: UsersDetailView,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Configuracion",
+      category: "",
     },
     
   },
   {
     path: "/Configuracion/Descuentos",
-    name: "Discunts",
+    name: pages.discunts,
     props:false,
     component: DiscuntView,
     meta: {
@@ -174,32 +140,33 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/Configuracion/Descuentos/Nuevo",
-    name: "DiscuntsAdd",
+    name: pages.usersAdd,
     props:false,
     component: DiscuntDetail,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Configuracion",
+      category: "",
     },
     
   },
   {
     path: "/Configuracion/Descuentos/:id",
-    name: "DiscuntsUpdate",
+    name: pages.userUpdate,
     props:true,
     component: DiscuntDetail,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Configuracion",
+      category: "",
     },
     
-  },  {
+  },
+  {
     path: "/Catalogos/Categorias",
-    name: "Categories",
+    name: pages.categories,
     props:false,
     component: CategorieView,
     meta: {
@@ -212,27 +179,27 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/Catalogos/Categorias/Nuevo",
-    name: "CategoriesAdd",
+    name: pages.categoriesAdd,
     props:false,
     component: CategoriesDetails,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Catalogos",
+      category: "",
     },
     
   },
   {
     path: "/Catalogos/Categorias/:id",
-    name: "CategoriesUpdate",
+    name: pages.categoriesUpdate,
     props:true,
     component: CategoriesDetails,
     meta: {
       requiresAuth: false,
       show: false,
       name: "",
-      category: "Catalogos",
+      category: "",
     },
     
   },

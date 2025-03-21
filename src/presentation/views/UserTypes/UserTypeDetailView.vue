@@ -32,6 +32,7 @@
 <script lang="ts" setup>
 import { UserTypeForm } from '@/domain/entities/UserType';
 import { UserTypeStore } from '@/presentation/stores/UserTypeStore';
+import pages from '@/util/pageName';
 import { defineProps, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -50,17 +51,14 @@ const props = defineProps(
 );
 
 onMounted(async () => {
-    if (!props.id) {
-        return;
+    if (props.id) {
+        await userTypeStore.getUserTypeById(props.id);
+        userType.value = userTypeStore.user;
     }
-
-        userType.value = await userTypeStore.getUserTypeById(props.id);
-
-    
 });
 //funcion para regresar
 const back = () => {
-    router.push({ name: 'UserTypes' })
+    router.push({ name: pages.userTypes })
 };
 
 //funcion para guardar
@@ -70,15 +68,14 @@ const save = async ()=>{
     
     if(props.id){
         await userTypeStore.updateUserType(userType.value);
-        console.log("guardar");
-        back();
-        loading.value= false;
-        return;
+    }else{
+        await userTypeStore.addUserType(userType.value);
     }
-    await userTypeStore.addUserType(userType.value);
-    console.log("guardar nuevo");
     loading.value= false;
-    back();
+    if(!userTypeStore.error){
+        back();
+    }
+    
 }
 
 </script>

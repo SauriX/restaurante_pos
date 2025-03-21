@@ -4,6 +4,7 @@ import { DiscuntRepository } from "@/infraestructure/repositories/DiscuntReposit
 import { errorhelper } from "@/util/helpers";
 import { defineStore } from "pinia";
 import { useAlertStore } from "./AlertStore";
+import messages from "@/util/messages";
 const discuntRepository = new DiscuntRepository();
 const discuntUseCases = new DiscuntUseCases(discuntRepository);
 
@@ -25,7 +26,7 @@ export const DiscuntStore = defineStore("discunt",{
                 
                 const  erros = errorhelper(error);
                 erros.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 })
                 this.error=true;
             }
@@ -39,7 +40,7 @@ export const DiscuntStore = defineStore("discunt",{
                 
                 const  erros = errorhelper(error);
                 erros.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 })
                 this.error=true;
             }
@@ -51,11 +52,12 @@ export const DiscuntStore = defineStore("discunt",{
                     if(this.discunts.length !=0){
                         this.discunts.push(discunts);
                     }
+                    this.alertStore.triggerAlert(messages.created, "success", 10000,"top-right");
                     this.error=false;
             } catch (error) {
                 const  erros = errorhelper(error);
                 erros.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 })
                 this.error=true;
             }
@@ -70,10 +72,12 @@ export const DiscuntStore = defineStore("discunt",{
                         type.discuntId === discunts.discuntId ? discunts : type
                     );
                 }
+                this.alertStore.triggerAlert(messages.updated, "success", 10000,"top-right");
+                this.error=false;
             } catch (error) {
                 const  erros = errorhelper(error);
                 erros.forEach(err=>{
-                    this.alertStore.triggerAlert(err.message, "danger", 10000,"bottom-right");
+                    this.alertStore.triggerAlert(err.message, "danger", 10000,"top-right");
                 })
                 this.error=true;
             }
